@@ -19,7 +19,7 @@ func main(){
 	var consumer rabbitmq_client.IRabbitMqConsumer
 	var err error
 	consumer, err = rabbitmq_client.NewRabbitMqConsumer(
-		//TODO :
+		//TODO : 
 		false, 0, 50)
 	failOnError(err, "Failed to create new consumer")
 
