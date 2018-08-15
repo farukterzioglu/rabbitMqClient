@@ -19,7 +19,9 @@ func main(){
 	var consumer rabbitmq_client.IRabbitMqConsumer
 	var err error
 	consumer, err = rabbitmq_client.NewRabbitMqConsumer(
-		//TODO :
+		"192.168.57.138:5672", "hermesrabbitadmin", "JSG8t9rFEFEY",
+		"HybrisSellingCategoryExchange", false,
+		"HybrisSellingGo", "HybrisSellingCategoryRoutingKey",
 		false, 0, 50)
 	failOnError(err, "Failed to create new consumer")
 
