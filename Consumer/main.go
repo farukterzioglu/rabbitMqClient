@@ -7,10 +7,25 @@ import(
 	"os"
 	"os/signal"
 	"log"
+	"flag"
+	"time"
 )
 
-func onMessage(delivery amqp.Delivery) {
-	fmt.Printf("Got a message: %v\n", string(delivery.Body))
+var (
+	hostName     = flag.String("hostName", "localhost:5672/", "Host Name")
+	userName	 = flag.String("userName", "guest", "RabbitMq user name")
+	password	 = flag.String("password", "guest", "RabbitMq password")
+	exchangeName = flag.String("exchangeName", "exchangeName", "Exchange name")
+	durable      = flag.Bool("durable", false, "Durable")
+	queueName    = flag.String("queueName", "queueName", "Queue name")
+	routingKey     = flag.String("routingKey", "routingKey", "Routing key")
+	enablePriority = flag.Bool("enablePriority", false, "Enable priority")
+	maxPriority    = flag.Uint("maxPriority", 0, "Max priority")
+	prefetchCount  = flag.Uint("prefetchCount", 1, "Prefetch count")
+)
+
+func init() {
+	flag.Parse()
 }
 
 func main(){
@@ -19,8 +34,10 @@ func main(){
 	var consumer rabbitmq_client.IRabbitMqConsumer
 	var err error
 	consumer, err = rabbitmq_client.NewRabbitMqConsumer(
-		//TODO : 
-		false, 0, 50)
+		*hostName, *userName, *password,
+		*exchangeName, *durable,
+		*queueName, *routingKey,
+		*enablePriority, *maxPriority, uint16(*prefetchCount))
 	failOnError(err, "Failed to create new consumer")
 
 	err = consumer.Subscribe("test consumer", onMessage)
@@ -31,6 +48,12 @@ func main(){
 	<-quit
 
 	consumer.Close()
+}
+
+func onMessage(delivery amqp.Delivery) {
+	fmt.Printf("%v\n", string(delivery.Body))
+	time.Sleep(3 * time.Second)
+	delivery.Ack(false)
 }
 
 func failOnError(err error, msg string) {

@@ -86,7 +86,7 @@ func (consumer *RabbitMqConsumer) Subscribe(consumerName string, handlerFunc fun
 	messages , err := consumer.channel.Consume(
 		consumer.queueName, // queue
 		consumerName, // consumer
-		true, // auto-ack
+		false, // auto-ack
 		false, // exclusive
 		false, // no-local
 		false, // no-wait
@@ -101,6 +101,10 @@ func (consumer *RabbitMqConsumer) Subscribe(consumerName string, handlerFunc fun
 }
 
 func (consumer *RabbitMqConsumer) Close() {
+	if consumer.channel != nil {
+		consumer.channel.Close()
+	}
+
 	if consumer.connection != nil {
 		consumer.connection.Close()
 	}
