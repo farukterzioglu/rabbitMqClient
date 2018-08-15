@@ -12,7 +12,7 @@ type IRabbitMqHelper interface{
 		exchangeType string , durable bool ) (*amqp.Channel, error)
 	DeclareQueue(connection *amqp.Connection, exchangeName string ,
 		durable bool , queueName string , routingKey string ,
-		enablePriority bool, maxPriority int) (*amqp.Channel, error)
+		enablePriority bool, maxPriority uint) (*amqp.Channel, error)
 }
 
 type RabbitMqHelper struct{}
@@ -42,7 +42,7 @@ func (helper *RabbitMqHelper) DeclareExchange(connection *amqp.Connection, excha
 
 func (helper *RabbitMqHelper) DeclareQueue(connection *amqp.Connection, exchangeName string ,
 	durable bool , queueName string , routingKey string ,
-	enablePriority bool, maxPriority int) (*amqp.Channel, error){
+	enablePriority bool, maxPriority uint) (*amqp.Channel, error){
 	ch, err := connection.Channel()
 	if err != nil {
 		return nil, err
