@@ -18,13 +18,13 @@ func main(){
 
 	var consumer rabbitmq_client.IRabbitMqConsumer
 	var err error
-	consumer, err = rabbitmq_client.NewRabbitMqConsumer("host", "userName", "pass",
-		"exchangeName", false, "queueName", "routingKey", false,
-		0, 50)
+	consumer, err = rabbitmq_client.NewRabbitMqConsumer(
+		//TODO :
+		false, 0, 50)
 	failOnError(err, "Failed to create new consumer")
 
 	err = consumer.Subscribe("test consumer", onMessage)
-	failOnError(err, "Failed to create new consumer")
+	failOnError(err, "Failed to subscribe")
 
 	quit := make(chan os.Signal)
 	signal.Notify(quit, os.Interrupt)
