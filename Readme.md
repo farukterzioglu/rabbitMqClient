@@ -6,7 +6,7 @@ docker exec some-rabbit rabbitmq-plugins enable rabbitmq_management
 # using guest/guest
 
 cd Consumer
-# Sample usage ; 
+# Sample usage ;
 # go run main.go -hostName=[hostName] -userName=[userName] -password=[password] -exchangeName=[exchangeName] -queueName=[queueName] -routingKey=[routingKey] -prefetchCount=[prefetchCount]
 
 #Connect to RabbitMq on Docker ;
@@ -14,6 +14,4 @@ go run main.go -hostName=localhost:5672 -userName=guest -password=guest -exchang
 
 #Consul settings
 https://demo.consul.io/ui/dc1/kv/rabbitMqConsumerGoLang/
-
-
 
