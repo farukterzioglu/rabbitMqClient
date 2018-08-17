@@ -1,4 +1,4 @@
-package rabbitmq_client
+package rabbitMqClient
 
 import (
 	"github.com/streadway/amqp"
@@ -19,6 +19,7 @@ type RabbitMqConsumer struct {
 	userName string
 	pass string
 	exchangeName string
+	exchangeType string
 
 	durable bool
 	queueName string
@@ -32,7 +33,7 @@ type RabbitMqConsumer struct {
 }
 
 func NewRabbitMqConsumer(hostName string, userName string, pass string,
-exchangeName string, durable bool, queueName string, routingKey string, enablePriority bool,
+exchangeName string, exchangeType string, durable bool, queueName string, routingKey string, enablePriority bool,
 maxPriority uint, prefetchCount uint16) (IRabbitMqConsumer, error){
 	consumer := &RabbitMqConsumer{
 		rabbitMqHelper : &RabbitMqHelper{},
@@ -40,6 +41,7 @@ maxPriority uint, prefetchCount uint16) (IRabbitMqConsumer, error){
 		userName :userName,
 		pass : pass,
 		exchangeName : exchangeName,
+		exchangeType : exchangeType,
 		durable : durable,
 		queueName : queueName,
 		routingKey : routingKey,
@@ -65,6 +67,11 @@ func (consumer RabbitMqConsumer) constructConnection() (*amqp.Channel,error){
 	connection, err := consumer.rabbitMqHelper.GetRabbitMqConnection(consumer.hostName, consumer.userName, consumer.pass)
 	if err != nil {
 		return nil, err
+	}
+
+	_, err = consumer.rabbitMqHelper.DeclareExchange(connection,consumer.exchangeName, consumer.exchangeType, false )
+	if err != nil {
+		return nil,err
 	}
 
 	ch, err := consumer.rabbitMqHelper.DeclareQueue(connection, consumer.exchangeName, consumer.durable,
