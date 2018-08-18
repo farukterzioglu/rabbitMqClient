@@ -8,10 +8,13 @@ using guest/guest\
 cd Consumer\
 
 **Sample usage**\
-go run main.go -hostName=[hostName] -userName=[userName] -password=[password] -exchangeName=[exchangeName] -queueName=[queueName] -routingKey=[routingKey] -prefetchCount=[prefetchCount]\
+go run main.go -consulSettings=false -hostName=[hostName] -userName=[userName] -password=[password] -exchangeName=[exchangeName] -queueName=[queueName] -routingKey=[routingKey] -prefetchCount=[prefetchCount]\
 
 **Connect to RabbitMQ on Docker**\
-go run main.go -hostName=localhost:5672 -userName=guest -password=guest -exchangeName=ProductExchange -queueName=TestingQueue -routingKey=TestRoute -prefetchCount=1\
+go run main.go -consulSettings=false -hostName=localhost:5672 -userName=guest -password=guest -exchangeName=ProductExchange -queueName=TestingQueue -routingKey=TestRoute -prefetchCount=1  
+
+With Consul;
+go run main.go -consulSettings=true -consulUrl=https://demo.consul.io/ui/dc1/kv -consulPath=rabbitMqConsumerGoLang
 
 **Consul settings**\
 https://demo.consul.io/ui/dc1/kv/rabbitMqConsumerGoLang/\

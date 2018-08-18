@@ -1,34 +1,34 @@
 package main
 
-import(
+import (
+	"flag"
+	"fmt"
 	"github.com/farukterzioglu/rabbitMqClient"
 	"github.com/farukterzioglu/rabbitMqClient/Utilities"
 	"github.com/streadway/amqp"
-	"fmt"
+	"log"
 	"os"
 	"os/signal"
-	"log"
-	"flag"
-	"time"
 	"strconv"
+	"time"
 )
 
 var (
-	hostName     = flag.String("hostName", "localhost:5672/", "Host Name")
-	userName	 = flag.String("userName", "guest", "RabbitMq user name")
-	password	 = flag.String("password", "guest", "RabbitMq password")
-	exchangeName = flag.String("exchangeName", "SampleExchange", "Exchange name")
-	exchangeType = flag.String("exchangeType", "fanout", "Exchange type")
-	durable      = flag.Bool("durable", false, "Durable")
-	queueName    = flag.String("queueName", "sampleQueue", "Queue name")
+	hostName       = flag.String("hostName", "localhost:5672/", "Host Name")
+	userName       = flag.String("userName", "guest", "RabbitMq user name")
+	password       = flag.String("password", "guest", "RabbitMq password")
+	exchangeName   = flag.String("exchangeName", "SampleExchange", "Exchange name")
+	exchangeType   = flag.String("exchangeType", "fanout", "Exchange type")
+	durable        = flag.Bool("durable", false, "Durable")
+	queueName      = flag.String("queueName", "sampleQueue", "Queue name")
 	routingKey     = flag.String("routingKey", "", "Routing key")
 	enablePriority = flag.Bool("enablePriority", false, "Enable priority")
 	maxPriority    = flag.Uint("maxPriority", 0, "Max priority")
 	prefetchCount  = flag.Uint("prefetchCount", 1, "Prefetch count")
 
 	consulSettings = flag.Bool("consulSettings", true, "Settings from Consul")
-	consulUrl  = flag.String("Consul Url", "https://demo.consul.io/ui/dc1/kv", "Consul Url")
-	consulPath  = flag.String("Consul Path", "rabbitMqConsumerGoLang", "Consul Path")
+	consulUrl      = flag.String("consulUrl", "", "Consul Url")
+	consulPath     = flag.String("consulPath", "", "Consul Path")
 )
 
 func init() {
@@ -39,14 +39,14 @@ func init() {
 	}
 }
 
-func readConsulSettings(){
+func readConsulSettings() {
 	if *consulUrl == "" || *consulPath == "" {
 		panic(fmt.Sprintf("Couldn't read Consul url "))
 	}
 
 	var consulHelper Utilities.IConsulHelper
 	consulHelper, err := Utilities.NewConsulHelper(*consulUrl, *consulPath)
-	if err != nil{
+	if err != nil {
 		panic(fmt.Sprintf("Couldn't connect to Consul: %s / %s \n", *consulUrl, *consulPath))
 	}
 
@@ -57,30 +57,30 @@ func readConsulSettings(){
 	*exchangeType = consulHelper.GetValue("exchangeType")
 	*durable, err = strconv.ParseBool(consulHelper.GetValue("durable"))
 	if err != nil {
-		log.Fatalf("Wrong format for 'durable' value. Set to 'false'", )
+		log.Fatalf("Wrong format for 'durable' value. Set to 'false'")
 		*durable = false
 	}
 	*queueName = consulHelper.GetValue("queueName")
 	*routingKey = consulHelper.GetValue("routingKey")
 	*enablePriority, err = strconv.ParseBool(consulHelper.GetValue("enablePriority"))
 	if err != nil {
-		log.Fatalf("Wrong format for 'enablePriority' value. Set to 'false'", )
+		log.Fatalf("Wrong format for 'enablePriority' value. Set to 'false'")
 		*enablePriority = false
 	}
-	maxPri, err := strconv.ParseUint(consulHelper.GetValue("maxPriority"),10, 64)
+	maxPri, err := strconv.ParseUint(consulHelper.GetValue("maxPriority"), 10, 64)
 	if err != nil {
 		maxPri = 0
 	}
 	*maxPriority = uint(maxPri)
 
-	pref, err := strconv.ParseUint(consulHelper.GetValue("maxPriority"),10, 64)
+	pref, err := strconv.ParseUint(consulHelper.GetValue("maxPriority"), 10, 64)
 	if err != nil {
 		pref = 1
 	}
 	*prefetchCount = uint(pref)
 }
 
-func main(){
+func main() {
 	println("Consumer started...")
 
 	var consumer rabbitMqClient.IRabbitMqConsumer
