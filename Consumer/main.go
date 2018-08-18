@@ -10,6 +10,7 @@ import(
 	"log"
 	"flag"
 	"time"
+	"strconv"
 )
 
 var (
@@ -25,6 +26,7 @@ var (
 	maxPriority    = flag.Uint("maxPriority", 0, "Max priority")
 	prefetchCount  = flag.Uint("prefetchCount", 1, "Prefetch count")
 
+	consulSettings = flag.Bool("consulSettings", true, "Settings from Consul")
 	consulUrl  = flag.String("Consul Url", "https://demo.consul.io/ui/dc1/kv", "Consul Url")
 	consulPath  = flag.String("Consul Path", "rabbitMqConsumerGoLang", "Consul Path")
 )
@@ -32,18 +34,53 @@ var (
 func init() {
 	flag.Parse()
 
+	if *consulSettings {
+		readConsulSettings()
+	}
+}
+
+func readConsulSettings(){
+	if *consulUrl == "" || *consulPath == "" {
+		panic(fmt.Sprintf("Couldn't read Consul url "))
+	}
+
 	var consulHelper Utilities.IConsulHelper
 	consulHelper, err := Utilities.NewConsulHelper(*consulUrl, *consulPath)
 	if err != nil{
 		panic(fmt.Sprintf("Couldn't connect to Consul: %s / %s \n", *consulUrl, *consulPath))
 	}
 
-	value := consulHelper.GetValue("testKey")
-	fmt.Printf("Value from Consul : %s \n", value)
+	*hostName = consulHelper.GetValue("hostName")
+	*userName = consulHelper.GetValue("userName")
+	*password = consulHelper.GetValue("password")
+	*exchangeName = consulHelper.GetValue("exchangeName")
+	*exchangeType = consulHelper.GetValue("exchangeType")
+	*durable, err = strconv.ParseBool(consulHelper.GetValue("durable"))
+	if err != nil {
+		log.Fatalf("Wrong format for 'durable' value. Set to 'false'", )
+		*durable = false
+	}
+	*queueName = consulHelper.GetValue("queueName")
+	*routingKey = consulHelper.GetValue("routingKey")
+	*enablePriority, err = strconv.ParseBool(consulHelper.GetValue("enablePriority"))
+	if err != nil {
+		log.Fatalf("Wrong format for 'enablePriority' value. Set to 'false'", )
+		*enablePriority = false
+	}
+	maxPri, err := strconv.ParseUint(consulHelper.GetValue("maxPriority"),10, 64)
+	if err != nil {
+		maxPri = 0
+	}
+	*maxPriority = uint(maxPri)
+
+	pref, err := strconv.ParseUint(consulHelper.GetValue("maxPriority"),10, 64)
+	if err != nil {
+		pref = 1
+	}
+	*prefetchCount = uint(pref)
 }
 
 func main(){
-	return //TODO : testing, remove this
 	println("Consumer started...")
 
 	var consumer rabbitMqClient.IRabbitMqConsumer
