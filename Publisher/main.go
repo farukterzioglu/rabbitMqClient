@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"github.com/farukterzioglu/rabbitMqClient"
 	"github.com/farukterzioglu/rabbitMqClient/Utilities"
-	"github.com/streadway/amqp"
 	"log"
 	"os"
 	"os/signal"
@@ -20,11 +19,7 @@ var (
 	exchangeName   = flag.String("exchangeName", "SampleExchange", "Exchange name")
 	exchangeType   = flag.String("exchangeType", "fanout", "Exchange type")
 	durable        = flag.Bool("durable", false, "Durable")
-	queueName      = flag.String("queueName", "sampleQueue", "Queue name")
 	routingKey     = flag.String("routingKey", "", "Routing key")
-	enablePriority = flag.Bool("enablePriority", false, "Enable priority")
-	maxPriority    = flag.Uint("maxPriority", 0, "Max priority")
-	prefetchCount  = flag.Uint("prefetchCount", 1, "Prefetch count")
 
 	consulSettings = flag.Bool("consulSettings", true, "Settings from Consul")
 	consulUrl      = flag.String("consulUrl", "", "Consul Url")
@@ -60,56 +55,36 @@ func readConsulSettings() {
 		log.Fatalf("Wrong format for 'durable' value. Set to 'false'")
 		*durable = false
 	}
-	*queueName = consulHelper.GetValue("queueName")
 	*routingKey = consulHelper.GetValue("routingKey")
-	*enablePriority, err = strconv.ParseBool(consulHelper.GetValue("enablePriority"))
-	if err != nil {
-		log.Fatalf("Wrong format for 'enablePriority' value. Set to 'false'")
-		*enablePriority = false
-	}
-	maxPri, err := strconv.ParseUint(consulHelper.GetValue("maxPriority"), 10, 64)
-	if err != nil {
-		maxPri = 0
-	}
-	*maxPriority = uint(maxPri)
-
-	pref, err := strconv.ParseUint(consulHelper.GetValue("maxPriority"), 10, 64)
-	if err != nil {
-		pref = 1
-	}
-	*prefetchCount = uint(pref)
 }
 
 func main() {
 	println("Consumer started...")
 
-	var consumer rabbitMqClient.IRabbitMqConsumer
+	var publisher rabbitMqClient.IRabbitMqPublisher
 	var err error
-	consumer, err = rabbitMqClient.NewRabbitMqConsumer(
+	publisher, err = rabbitMqClient.NewRabbitMqPublisher(
 		*hostName, *userName, *password,
-		*exchangeName, *exchangeType, *durable,
-		*queueName, *routingKey,
-		*enablePriority, *maxPriority, uint16(*prefetchCount))
+		*exchangeName, *exchangeType, *durable)
 	failOnError(err, "Failed to create new consumer")
 
-	counter := 0
-	err = consumer.Subscribe("test consumer", func(delivery amqp.Delivery){
-		counter++
-		onMessage(delivery, counter)
-	})
-	failOnError(err, "Failed to subscribe")
+	go startPublishing(publisher)
 
 	quit := make(chan os.Signal)
 	signal.Notify(quit, os.Interrupt)
 	<-quit
 
-	consumer.Close()
+	publisher.Close()
 }
 
-func onMessage(delivery amqp.Delivery, counter int) {
-	fmt.Printf("Got message : %v\n", string(delivery.Body))
-	time.Sleep(250 * time.Millisecond)
-	delivery.Ack(false)
+func startPublishing(publisher rabbitMqClient.IRabbitMqPublisher){
+	count := 0
+	for {
+		count++
+		time.Sleep(1 * time.Second)
+		publisher.Enqueue(fmt.Sprintf("Test message %d", count), *routingKey)
+		fmt.Printf(".")
+	}
 }
 
 func failOnError(err error, msg string) {

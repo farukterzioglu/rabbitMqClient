@@ -69,7 +69,7 @@ func (consumer RabbitMqConsumer) constructConnection() (*amqp.Channel,error){
 		return nil, err
 	}
 
-	_, err = consumer.rabbitMqHelper.DeclareExchange(connection,consumer.exchangeName, consumer.exchangeType, false )
+	_, err = consumer.rabbitMqHelper.DeclareExchange(connection,consumer.exchangeName, consumer.exchangeType, consumer.durable )
 	if err != nil {
 		return nil,err
 	}
