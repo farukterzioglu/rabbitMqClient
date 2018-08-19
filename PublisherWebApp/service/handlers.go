@@ -1,14 +1,23 @@
 package service
 
 import (
+	"fmt"
+	"strconv"
 	"net/http"
 	"encoding/json"
-	"strconv"
 	"github.com/farukterzioglu/rabbitMqClient/Utilities"
+	"github.com/farukterzioglu/rabbitMqClient/PublisherWebApp/service/model"
 )
 
 func PublishHandler(w http.ResponseWriter, r *http.Request){
+	var message model.Message
+	_ = json.NewDecoder(r.Body).Decode(&message)
 
+	data, _ := json.Marshal(message)
+	publisher.Enqueue(fmt.Sprintf("%s", data) , rabbitMqSettings.RoutingKey)
+
+	response, _ := json.Marshal( struct { Id string }{ message.Id})
+	writeJsonResponse(w, http.StatusOK, response)
 }
 
 func HealthCheck(w http.ResponseWriter, r *http.Request){
