@@ -1,9 +1,10 @@
 package rabbitMqClient
 
 import (
-	"github.com/streadway/amqp"
 	"log"
 	"fmt"
+	"github.com/streadway/amqp"
+	"github.com/farukterzioglu/rabbitMqClient/Utilities"
 )
 
 type IRabbitMqPublisher interface {
@@ -12,7 +13,7 @@ type IRabbitMqPublisher interface {
 }
 
 type RabbitMqPublisher struct {
-	rabbitMqHelper IRabbitMqHelper
+	rabbitMqHelper Utilities.IRabbitMqHelper
 	hostName string
 	userName string
 	pass string
@@ -27,7 +28,7 @@ type RabbitMqPublisher struct {
 func NewRabbitMqPublisher(hostName string, userName string, pass string,
 	exchangeName string, exchangeType string, durable bool) (IRabbitMqPublisher, error){
 	publisher := &RabbitMqPublisher{
-		rabbitMqHelper : &RabbitMqHelper{},
+		rabbitMqHelper : &Utilities.RabbitMqHelper{},
 		hostName : hostName,
 		userName :userName,
 		pass : pass,

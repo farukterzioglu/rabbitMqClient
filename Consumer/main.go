@@ -107,7 +107,7 @@ func main() {
 }
 
 func onMessage(delivery amqp.Delivery, counter int) {
-	fmt.Printf("Got message : %v\n", string(delivery.Body))
+	log.Printf("Got message : %v\n", string(delivery.Body))
 	time.Sleep(250 * time.Millisecond)
 	delivery.Ack(false)
 }

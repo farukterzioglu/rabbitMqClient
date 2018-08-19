@@ -2,6 +2,7 @@ package rabbitMqClient
 
 import (
 	"github.com/streadway/amqp"
+	"github.com/farukterzioglu/rabbitMqClient/Utilities"
 	_ "fmt"
 	_ "errors"
 	"log"
@@ -14,7 +15,7 @@ type IRabbitMqConsumer interface {
 }
 
 type RabbitMqConsumer struct {
-	rabbitMqHelper IRabbitMqHelper
+	rabbitMqHelper Utilities.IRabbitMqHelper
 	hostName string
 	userName string
 	pass string
@@ -36,7 +37,7 @@ func NewRabbitMqConsumer(hostName string, userName string, pass string,
 exchangeName string, exchangeType string, durable bool, queueName string, routingKey string, enablePriority bool,
 maxPriority uint, prefetchCount uint16) (IRabbitMqConsumer, error){
 	consumer := &RabbitMqConsumer{
-		rabbitMqHelper : &RabbitMqHelper{},
+		rabbitMqHelper : &Utilities.RabbitMqHelper{},
 		hostName : hostName,
 		userName :userName,
 		pass : pass,
