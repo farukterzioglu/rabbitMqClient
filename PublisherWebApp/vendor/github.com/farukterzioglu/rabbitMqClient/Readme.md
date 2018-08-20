@@ -18,22 +18,18 @@ go run main.go -consulSettings=false -hostName=localhost:5672 -userName=guest -p
 go run main.go -consulSettings=true -consulUrl=https://demo.consul.io/ui/dc1/kv -consulPath=rabbitMqConsumerGoLang  
 
 ### Consul settings ###
-https://demo.consul.io/ui/dgc1/kv/rabbitMqConsumerGoLang/
+https://demo.consul.io/ui/dc1/kv/rabbitMqConsumerGoLang/
 
 ### Publisher ###
+*Publish to RabbitMQ on Docker with Consul settings*  
 cd Publisher  
-
-* Publish to RabbitMQ on Docker with Consul settings *
 go run main.go -consulSettings=true -consulUrl=https://demo.consul.io/ui/dc1/kv -consulPath=rabbitMqConsumerGoLang
 
-* Publish with web api *
+*Publish with web api*  
 cd PublisherWebApp  
 go run main.go -consulUrl=https://demo.consul.io/ui/dc1/kv -consulPath=rabbitMqConsumerGoLang  
-curl -H "Content-Type: application/json" -X POST -d '{ "id": "1", "text": "Testing..." }' http://localhost:6767/publish
+curl -H "Content-Type: application/json" -X POST -d '{ "id": "1", "text": "Testing..." }' http://localhost:6767/publish  
 
-* Run 'Publisher Web Api' with 'Make' *
+*Run 'Publisher Web Api' with 'Make'*  
+cd PublisherWebApp  
 make run
-
-* Run 'Publisher Web Api' with Docker *
-docker build -t publisherwebapp:latest .
-docker run --net="host" --name publisherwebapp publisherwebapp -consulUrl=https://demo.consul.io/ui/dc1/kv -consulPath=rabbitMqConsumerGoLang (Can't access to http://localhost:6767 while running with Docker, don't know why.)
