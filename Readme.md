@@ -21,15 +21,15 @@ go run main.go -consulSettings=true -consulUrl=https://demo.consul.io/ui/dc1/kv 
 https://demo.consul.io/ui/dc1/kv/rabbitMqConsumerGoLang/
 
 ### Publisher ###
+*Publish to RabbitMQ on Docker with Consul settings*  
 cd Publisher  
-
-* Publish to RabbitMQ on Docker with Consul settings *
 go run main.go -consulSettings=true -consulUrl=https://demo.consul.io/ui/dc1/kv -consulPath=rabbitMqConsumerGoLang
 
-* Publish with web api *
+*Publish with web api*  
 cd PublisherWebApp  
 go run main.go -consulUrl=https://demo.consul.io/ui/dc1/kv -consulPath=rabbitMqConsumerGoLang  
-curl -H "Content-Type: application/json" -X POST -d '{ "id": "1", "text": "Testing..." }' http://localhost:6767/publish
+curl -H "Content-Type: application/json" -X POST -d '{ "id": "1", "text": "Testing..." }' http://localhost:6767/publish  
 
-* Run 'Publisher Web Api' with 'Make' *
+*Run 'Publisher Web Api' with 'Make'*  
+cd PublisherWebApp  
 make run
