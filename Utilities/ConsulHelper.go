@@ -1,7 +1,9 @@
 package Utilities
 
-import "fmt"
-import consulapi "github.com/hashicorp/consul/api"
+import (
+	"fmt"
+	consulapi "github.com/hashicorp/consul/api"
+)
 
 type IConsulHelper interface {
 	GetValue(key string) string

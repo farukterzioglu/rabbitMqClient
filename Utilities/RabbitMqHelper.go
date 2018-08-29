@@ -1,9 +1,9 @@
 package Utilities
 
 import (
-	"github.com/streadway/amqp"
-	"fmt"
 	"errors"
+	"fmt"
+	"github.com/streadway/amqp"
 )
 type IRabbitMqHelper interface{
 	GetRabbitMqConnection(hostName string,userName string ,

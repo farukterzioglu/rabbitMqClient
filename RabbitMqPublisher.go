@@ -1,10 +1,12 @@
 package rabbitMqClient
 
 import (
-	"log"
 	"fmt"
-	"github.com/streadway/amqp"
 	"github.com/farukterzioglu/rabbitMqClient/Utilities"
+	"github.com/farukterzioglu/rabbitMqClient/Utilities/SampleDir"
+	"github.com/farukterzioglu/rabbitMqClient/SampleDir/SampleSubdir"
+	"github.com/streadway/amqp"
+	"log"
 )
 
 type IRabbitMqPublisher interface {

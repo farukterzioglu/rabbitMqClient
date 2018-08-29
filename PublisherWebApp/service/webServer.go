@@ -1,10 +1,10 @@
 package service
 
 import (
-	"net/http"
-	"log"
-	"github.com/farukterzioglu/rabbitMqClient"
 	"fmt"
+	"github.com/farukterzioglu/rabbitMqClient"
+	"log"
+	"net/http"
 )
 
 type (

@@ -1,12 +1,10 @@
 package rabbitMqClient
 
 import (
-	"github.com/streadway/amqp"
-	"github.com/farukterzioglu/rabbitMqClient/Utilities"
-	_ "fmt"
-	_ "errors"
-	"log"
 	"fmt"
+	"github.com/farukterzioglu/rabbitMqClient/Utilities"
+	"github.com/streadway/amqp"
+	"log"
 )
 
 type IRabbitMqConsumer interface {
@@ -123,3 +121,5 @@ func consumeLoop(deliveries <-chan amqp.Delivery, handlerFunc func(d amqp.Delive
 		handlerFunc(d)
 	}
 }
+
+//version 2 features ->
