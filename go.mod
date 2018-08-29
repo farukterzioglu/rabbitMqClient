@@ -1,1 +1,1 @@
-module github.com\farukterzioglu\rabbitMqClient
+module github.com/farukterzioglu/rabbitMqClient
