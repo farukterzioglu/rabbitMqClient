@@ -1,3 +1,3 @@
 module publisher
 
-require github.com/farukterzioglu/rabbitMqClient v0.2.0
+require github.com/farukterzioglu/rabbitMqClient v1.0.0

@@ -121,3 +121,5 @@ func consumeLoop(deliveries <-chan amqp.Delivery, handlerFunc func(d amqp.Delive
 		handlerFunc(d)
 	}
 }
+
+//version 2 features ->
