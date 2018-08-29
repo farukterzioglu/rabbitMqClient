@@ -1,12 +1,12 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"github.com/farukterzioglu/rabbitMqClient/PublisherWebApp/service"
-	"flag"
 	"github.com/farukterzioglu/rabbitMqClient/Utilities"
-	"strconv"
 	"log"
+	"strconv"
 )
 
 var appName = "PublisherWebApp"

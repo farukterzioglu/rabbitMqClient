@@ -1,10 +1,10 @@
 package rabbitMqClient
 
 import (
-	"log"
 	"fmt"
-	"github.com/streadway/amqp"
 	"github.com/farukterzioglu/rabbitMqClient/Utilities"
+	"github.com/streadway/amqp"
+	"log"
 )
 
 type IRabbitMqPublisher interface {
