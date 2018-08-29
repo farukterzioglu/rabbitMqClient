@@ -1,4 +1,4 @@
-module github.com/farukterzioglu/rabbitMqClient
+module github.com/farukterzioglu/rabbitMqClient/v2
 
 require (
 	github.com/gorilla/mux v1.6.2
