@@ -1,2 +1,3 @@
 module consumer
-require github.com/farukterzioglu/rabbitMqClient v.0.1.1
+
+require github.com/farukterzioglu/rabbitMqClient v0.1.1
