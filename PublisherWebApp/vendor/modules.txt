@@ -1,0 +1,21 @@
+# github.com/farukterzioglu/rabbitMqClient v1.0.4
+github.com/farukterzioglu/rabbitMqClient/Utilities
+github.com/farukterzioglu/rabbitMqClient
+# github.com/gorilla/context v1.1.1
+github.com/gorilla/context
+# github.com/gorilla/mux v1.6.2
+github.com/gorilla/mux
+# github.com/hashicorp/consul v1.2.2
+github.com/hashicorp/consul/api
+# github.com/hashicorp/go-cleanhttp v0.0.0-20171218145408-d5fe4b57a186
+github.com/hashicorp/go-cleanhttp
+# github.com/hashicorp/go-rootcerts v0.0.0-20160503143440-6bb64b370b90
+github.com/hashicorp/go-rootcerts
+# github.com/hashicorp/serf v0.8.1
+github.com/hashicorp/serf/coordinate
+# github.com/mitchellh/go-homedir v1.0.0
+github.com/mitchellh/go-homedir
+# github.com/mitchellh/mapstructure v1.0.0
+github.com/mitchellh/mapstructure
+# github.com/streadway/amqp v0.0.0-20180806233856-70e15c650864
+github.com/streadway/amqp

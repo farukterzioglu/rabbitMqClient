@@ -1,0 +1,14 @@
+github.com/gorilla/mux v1.6.2 h1:Pgr17XVTNXAk3q/r4CpKzC5xBM/qW1uVLV+IhRZpIIk=
+github.com/gorilla/mux v1.6.2/go.mod h1:1lud6UwP+6orDFRuTfBEV8e9/aOM/c4fVVCaMa2zaAs=
+github.com/hashicorp/consul v1.2.2 h1:C5FurAZWLQ+XAjmL9g6rXbPlwxyyz8DvTL0WCAxTLAo=
+github.com/hashicorp/consul v1.2.2/go.mod h1:mFrjN1mfidgJfYP1xrJCF+AfRhr6Eaqhb2+sfyn/OOI=
+github.com/hashicorp/go-cleanhttp v0.0.0-20171218145408-d5fe4b57a186 h1:URgjUo+bs1KwatoNbwG0uCO4dHN4r1jsp4a5AGgHRjo=
+github.com/hashicorp/go-cleanhttp v0.0.0-20171218145408-d5fe4b57a186/go.mod h1:JpRdi6/HCYpAwUzNwuwqhbovhLtngrth3wmdIIUrZ80=
+github.com/hashicorp/go-rootcerts v0.0.0-20160503143440-6bb64b370b90 h1:9HVkPxOpo+yO93Ah4yrO67d/qh0fbLLWbKqhYjyHq9A=
+github.com/hashicorp/go-rootcerts v0.0.0-20160503143440-6bb64b370b90/go.mod h1:o4zcYY1e0GEZI6eSEr+43QDYmuGglw1qSO6qdHUHCgg=
+github.com/hashicorp/serf v0.8.1 h1:mYs6SMzu72+90OcPa5wr3nfznA4Dw9UyR791ZFNOIf4=
+github.com/hashicorp/serf v0.8.1/go.mod h1:h/Ru6tmZazX7WO/GDmwdpS975F019L4t5ng5IgwbNrE=
+github.com/mitchellh/mapstructure v1.0.0 h1:vVpGvMXJPqSDh2VYHF7gsfQj8Ncx+Xw5Y1KHeTRY+7I=
+github.com/mitchellh/mapstructure v1.0.0/go.mod h1:FVVH3fgwuzCH5S8UJGiWEs2h04kUh9fWfEaFds41c1Y=
+github.com/streadway/amqp v0.0.0-20180806233856-70e15c650864 h1:Oj3PUEs+OUSYUpn35O+BE/ivHGirKixA3+vqA0Atu9A=
+github.com/streadway/amqp v0.0.0-20180806233856-70e15c650864/go.mod h1:1WNBiOZtZQLpVAyu0iTduoJL9hEsMloAK5XWrtW0xdY=
