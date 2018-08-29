@@ -4,6 +4,10 @@ github.com/farukterzioglu/rabbitMqClient v0.2.0 h1:MzlllZlKuErUyrn0EDxOvr3WOCJrW
 github.com/farukterzioglu/rabbitMqClient v0.2.0/go.mod h1:9IEy0O0UuuB9ZlUgbftTqKGoT5bSxMdan9/bZpNmBQc=
 github.com/farukterzioglu/rabbitMqClient v1.0.0 h1:AFoiFtaGDEJRIQuDYFbKV+pAznWTg/yP4beoRMqDPgk=
 github.com/farukterzioglu/rabbitMqClient v1.0.0/go.mod h1:9IEy0O0UuuB9ZlUgbftTqKGoT5bSxMdan9/bZpNmBQc=
+github.com/farukterzioglu/rabbitMqClient v1.0.1 h1:PJ97lcRjlt0sLRsYYBsUeLURF945JbiHkNy3e9jk5F8=
+github.com/farukterzioglu/rabbitMqClient v1.0.1/go.mod h1:9IEy0O0UuuB9ZlUgbftTqKGoT5bSxMdan9/bZpNmBQc=
+github.com/farukterzioglu/rabbitMqClient v1.0.2 h1:o9xsODMXoKLk7KFKyWTtVj2enYEornBlrt4rwdUBw/4=
+github.com/farukterzioglu/rabbitMqClient v1.0.2/go.mod h1:9IEy0O0UuuB9ZlUgbftTqKGoT5bSxMdan9/bZpNmBQc=
 github.com/gorilla/mux v1.6.2 h1:Pgr17XVTNXAk3q/r4CpKzC5xBM/qW1uVLV+IhRZpIIk=
 github.com/gorilla/mux v1.6.2/go.mod h1:1lud6UwP+6orDFRuTfBEV8e9/aOM/c4fVVCaMa2zaAs=
 github.com/hashicorp/consul v1.2.2 h1:C5FurAZWLQ+XAjmL9g6rXbPlwxyyz8DvTL0WCAxTLAo=
