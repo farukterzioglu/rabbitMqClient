@@ -1,5 +1,8 @@
 github.com/farukterzioglu/rabbitMqClient v0.1.3 h1:aaWe92BvGxNkHLtKS5OyQ5n2BEAJIue2CqkOryRfeX0=
 github.com/farukterzioglu/rabbitMqClient v0.1.3/go.mod h1:1pTpn+2Zb8ejb8W+6Oscb3BMbkH1mLVXtMq23/OGRn4=
+github.com/farukterzioglu/rabbitMqClient v0.2.0 h1:MzlllZlKuErUyrn0EDxOvr3WOCJrWL176uliE2ktMCI=
+github.com/farukterzioglu/rabbitMqClient v0.2.0/go.mod h1:9IEy0O0UuuB9ZlUgbftTqKGoT5bSxMdan9/bZpNmBQc=
+github.com/gorilla/mux v1.6.2/go.mod h1:1lud6UwP+6orDFRuTfBEV8e9/aOM/c4fVVCaMa2zaAs=
 github.com/hashicorp/consul v1.2.2 h1:C5FurAZWLQ+XAjmL9g6rXbPlwxyyz8DvTL0WCAxTLAo=
 github.com/hashicorp/consul v1.2.2/go.mod h1:mFrjN1mfidgJfYP1xrJCF+AfRhr6Eaqhb2+sfyn/OOI=
 github.com/hashicorp/go-cleanhttp v0.0.0-20171218145408-d5fe4b57a186 h1:URgjUo+bs1KwatoNbwG0uCO4dHN4r1jsp4a5AGgHRjo=

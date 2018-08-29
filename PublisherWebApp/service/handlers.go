@@ -1,12 +1,12 @@
 package service
 
 import (
-	"fmt"
-	"strconv"
-	"net/http"
 	"encoding/json"
+	"fmt"
 	"github.com/farukterzioglu/rabbitMqClient/Utilities"
-	"github.com/farukterzioglu/rabbitMqClient/PublisherWebApp/service/model"
+	"net/http"
+	"publisherWebApp/service/model"
+	"strconv"
 )
 
 func PublishHandler(w http.ResponseWriter, r *http.Request){

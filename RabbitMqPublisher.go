@@ -3,6 +3,8 @@ package rabbitMqClient
 import (
 	"fmt"
 	"github.com/farukterzioglu/rabbitMqClient/Utilities"
+	"github.com/farukterzioglu/rabbitMqClient/Utilities/SampleDir"
+	"github.com/farukterzioglu/rabbitMqClient/SampleDir/SampleSubdir"
 	"github.com/streadway/amqp"
 	"log"
 )

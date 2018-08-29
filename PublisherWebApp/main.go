@@ -3,9 +3,9 @@ package main
 import (
 	"flag"
 	"fmt"
-	"github.com/farukterzioglu/rabbitMqClient/PublisherWebApp/service"
 	"github.com/farukterzioglu/rabbitMqClient/Utilities"
 	"log"
+	"publisherWebApp/service"
 	"strconv"
 )
 
